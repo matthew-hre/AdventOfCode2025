@@ -15,13 +15,13 @@ L82`;
 
   it("part1 with example input", () => {
     const day = new Day01();
-    day.setData(day.parseData(input));
+    day.data = day.parseData(input);
     expect(day.part1()).toBe(3);
   });
 
   it("part2 with example input", () => {
     const day = new Day01();
-    day.setData(day.parseData(input));
+    day.data = day.parseData(input);
     expect(day.part2()).toBe(6);
   });
 });

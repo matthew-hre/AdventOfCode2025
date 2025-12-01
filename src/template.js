@@ -47,14 +47,6 @@ export class Template {
     return rawData.trim();
   }
 
-  getData() {
-    return this.data;
-  }
-
-  setData(data) {
-    this.data = data;
-  }
-
   part1() {
     throw new Error("part1 not implemented");
   }
