@@ -7,14 +7,46 @@ export class Day01 extends Template {
 
   parseData(rawData) {
     const lines = rawData.trim().split("\n");
-    return lines;
+    return lines.map(line => {
+      const direction = line[0];
+      const distance = parseInt(line.slice(1), 10);
+      return { direction, distance };
+    });
   }
 
   part1() {
-    throw new Error("part1 not implemented");
+    let position = 50;
+    let count = 0;
+
+    for (const rotation of this.data) {
+      position += (rotation.direction === 'L') ? rotation.distance : -rotation.distance;
+
+      position = ((position % 100) + 100) % 100;
+
+      if (position === 0) count++;
+    }
+
+    return count;
   }
 
   part2() {
-    throw new Error("part2 not implemented");
+    let position = 50;
+    let count = 0;
+
+    for (const rotation of this.data) {
+      if (rotation.direction === 'L') {
+        // (position - distance, position)
+        count += Math.floor((position - 1) / 100) - Math.floor((position - rotation.distance - 1) / 100);
+        position -= rotation.distance;
+      } else {
+        // (position, position + distance]
+        count += Math.floor((position + rotation.distance) / 100) - Math.floor(position / 100);
+        position += rotation.distance;
+      }
+
+      position = ((position % 100) + 100) % 100;
+    }
+
+    return count;
   }
 }
