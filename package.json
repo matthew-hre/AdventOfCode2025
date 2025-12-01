@@ -3,9 +3,9 @@
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "test": "vitest",
-    "test:run": "vitest run",
-    "solve": "node index.js"
+    "solve": "node solve.js",
+    "test": "node test-runner.js",
+    "test:watch": "node test-runner.js --watch"
   },
   "devDependencies": {
     "vitest": "^1.0.0"

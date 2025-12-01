@@ -27,7 +27,7 @@ export class Template {
     this.data = null;
     if (fileLocation) {
       const rawData = fs.readFileSync(fileLocation, "utf-8");
-      this.setData(this.parseData(rawData));
+      this.data = this.parseData(rawData);
     }
   }
 
@@ -40,7 +40,7 @@ export class Template {
 
   async _loadInputAsync(day) {
     const rawData = await getInputData(day);
-    this.setData(this.parseData(rawData));
+    this.data = this.parseData(rawData);
   }
 
   parseData(rawData) {
@@ -56,14 +56,11 @@ export class Template {
   }
 
   toString() {
-    return `
-
-${pc.bold(`  -=-=- ${pc.green("ADVENT")} ${pc.red("OF")} ${pc.green("CODE")} ${pc.red("DAY")} ${pc.green(this.day)} -=-=-`)}
+    return `${pc.bold(`  -=-=- ${pc.green("ADVENT")} ${pc.red("OF")} ${pc.green("CODE")} ${pc.red("DAY")} ${pc.green(this.day)} -=-=-`)}
 ${pc.underline(pc.cyan(this.link))}
 
 ${this.getPart1Timing()}
-${this.getPart2Timing()}
-`;
+${this.getPart2Timing()}`;
   }
 
   getPart1Timing() {
