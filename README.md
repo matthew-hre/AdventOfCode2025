@@ -1,8 +1,8 @@
 # AdventOfCode2025
 
 [![Tests](https://github.com/matthew-hre/AdventOfCode2025/actions/workflows/test.yml/badge.svg)](https://github.com/matthew-hre/AdventOfCode2025/actions)
-![Days Completed](https://img.shields.io/badge/Days%20Completed-1%2F12-blue)
-![Test Files](https://img.shields.io/badge/Test%20Files-1-green)
+![Days Completed](https://img.shields.io/badge/Days%20Completed-2%2F12-blue)
+![Test Files](https://img.shields.io/badge/Test%20Files-2-green)
 
 My half-baked solutions repo for Advent of Code 2025 (JavaScript, sorry).
 
