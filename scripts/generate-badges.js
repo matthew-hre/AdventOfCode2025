@@ -3,19 +3,37 @@ import path from "path";
 import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
-const rootDir = path.join(__dirname, "..");
-const srcDir = path.join(rootDir, "src");
 
-// Count days (day01.js, day02.js, etc.)
-const dayFiles = fs.readdirSync(srcDir).filter(f => f.match(/^day\d+\.js$/));
-const daysCompleted = dayFiles.length;
+function updateBadges() {
+    const srcDir = path.join(__dirname, "../src");
+    const readmeFile = path.join(__dirname, "../README.md");
 
-// Count test files
-const testFiles = fs.readdirSync(srcDir).filter(f => f.match(/^day\d+\.test\.js$/));
-const testsCount = testFiles.length;
+    const dayFiles = fs
+        .readdirSync(srcDir)
+        .filter(f => f.match(/^day\d+\.js$/));
 
-console.log(`Days completed: ${daysCompleted}`);
-console.log(`Test files: ${testsCount}`);
+    const testFiles = fs
+        .readdirSync(srcDir)
+        .filter(f => f.match(/^day\d+\.test\.js$/));
 
-// Output as JSON for GitHub Actions
-console.log(JSON.stringify({ daysCompleted, testsCount }));
+    const daysCompleted = dayFiles.length;
+    const testCount = testFiles.length;
+
+    let readmeContent = fs.readFileSync(readmeFile, "utf-8");
+
+    const daysCompletedBadge = `![Days Completed](https://img.shields.io/badge/Days%20Completed-${daysCompleted}%2F12-blue)`;
+    const testFilesBadge = `![Test Files](https://img.shields.io/badge/Test%20Files-${testCount}-green)`;
+
+    readmeContent = readmeContent.replace(
+        /!\[Days Completed\].*\n/,
+        daysCompletedBadge + "\n"
+    );
+    readmeContent = readmeContent.replace(
+        /!\[Test Files\].*\n/,
+        testFilesBadge + "\n"
+    );
+
+    fs.writeFileSync(readmeFile, readmeContent);
+}
+
+updateBadges();

@@ -35,11 +35,3 @@ jobs:
         run: nix develop -c pnpm install
       - name: test
         run: nix develop -c pnpm test
-      - name: Generate badge data
-        id: badges
-        run: |
-          BADGE_DATA=$(nix develop -c node scripts/generate-badges.js | tail -1)
-          DAYS=$(echo $BADGE_DATA | grep -o '"daysCompleted":[0-9]*' | cut -d: -f2)
-          TESTS=$(echo $BADGE_DATA | grep -o '"testsCount":[0-9]*' | cut -d: -f2)
-          echo "days=$DAYS" >> $GITHUB_OUTPUT
-          echo "tests=$TESTS" >> $GITHUB_OUTPUT

@@ -5,9 +5,12 @@
   "scripts": {
     "solve": "node solve.js",
     "test": "node test-runner.js",
-    "test:watch": "node test-runner.js --watch"
+    "test:watch": "node test-runner.js --watch",
+    "generate-badges": "node scripts/generate-badges.js",
+    "prepare": "husky"
   },
   "devDependencies": {
+    "husky": "^9.1.7",
     "vitest": "^1.0.0"
   },
   "dependencies": {
