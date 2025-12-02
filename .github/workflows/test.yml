@@ -45,11 +45,11 @@ jobs:
           echo "tests=$TESTS" >> $GITHUB_OUTPUT
           mkdir -p .github
           echo $BADGE_DATA > .github/badge-data.json
-      - name: Commit badge data
+      - name: Update badge data
         run: |
-          git config --global user.name "GitHub Actions"
-          git config --global user.email "actions@github.com"
-          git add .github/badge-data.json
-          git commit -m "Update badge data" || true
-          git push || true
+         git config --global user.name "GitHub Actions"
+         git config --global user.email "actions@github.com"
+         git add .github/badge-data.json
+         git commit --amend --no-edit || true
+         git push --force-with-lease || true
         if: github.ref == 'refs/heads/main' && github.event_name == 'push'
