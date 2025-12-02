@@ -18,6 +18,8 @@ My half-baked solutions repo for Advent of Code 2025 (JavaScript, sorry).
 
 ### Commands
 
-- **Run tests:** `pnpm test:run`
-- **Watch tests:** `pnpm test`
+- **Run tests:** `pnpm test`
+- **Run tests for a specific day:** `pnpm test DAY_NUMBER`
+- **Watch tests:** `pnpm test:watch`
 - **Run all days:** `pnpm solve`
+- **Run a specific day:** `pnpm solve DAY_NUMBER`
