@@ -14,44 +14,26 @@ export class Day02 extends Template {
   }
 
   part1() {
-    const isInvalidId = (num) => {
-      const str = num.toString();
+    const isInvalidId = (str) => {
       const len = str.length;
-
       if (len % 2 !== 0) return false;
 
       const half = len / 2;
-      const firstHalf = str.substring(0, half);
-      const secondHalf = str.substring(half);
-
-      return firstHalf === secondHalf;
+      return str.substring(0, half) === str.substring(half);
     }
 
-    let totalSum = 0;
-
-    for (const range of this.data) {
-      for (let id = range.start; id <= range.end; id++) {
-        if (isInvalidId(id)) {
-          totalSum += id;
-        }
-      }
-    }
-
-    return totalSum;
+    return this.sumInvalidIds(isInvalidId);
   }
 
   part2() {
-    const isInvalidId = (num) => {
-      const str = num.toString();
+    const isInvalidId = (str) => {
       const len = str.length;
 
       for (let patternLen = 1; patternLen <= len / 2; patternLen++) {
         if (len % patternLen !== 0) continue;
 
         const pattern = str.substring(0, patternLen);
-        const repetitions = len / patternLen;
-
-        if (pattern.repeat(repetitions) === str) {
+        if (pattern.repeat(len / patternLen) === str) {
           return true;
         }
       }
@@ -59,11 +41,15 @@ export class Day02 extends Template {
       return false;
     }
 
+    return this.sumInvalidIds(isInvalidId);
+  }
+
+  sumInvalidIds(validator) {
     let totalSum = 0;
 
     for (const range of this.data) {
       for (let id = range.start; id <= range.end; id++) {
-        if (isInvalidId(id)) {
+        if (validator(id.toString())) {
           totalSum += id;
         }
       }
