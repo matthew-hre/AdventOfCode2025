@@ -1,7 +1,7 @@
 import { describe, it, expect } from "vitest";
 import { Day03 } from "./day03.js";
 
-describe("Day 01", () => {
+describe("Day 04", () => {
   const input = `987654321111111
 811111111111119
 234234234234278
